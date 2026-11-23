@@ -1,0 +1,8 @@
+build
+4t_*
+4t_data/4t.db
+4t_data/4t.db-shm
+4t_data/4t.db-wal
+4t_data/settings.yaml
+4t_data/.settings-*.yaml
+dist/

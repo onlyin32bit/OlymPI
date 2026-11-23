@@ -1,0 +1,216 @@
+/*
+ * Operator panel tokens. Scoped to :root.cp-next (set while the panel is mounted)
+ * so dialogs and popovers portaled to <body> share the same neutral palette.
+ * Colour is reserved for state: red = on air, amber = armed/waiting, green/red = verdicts.
+ */
+:root.cp-next {
+	--cp-ground: #f4f4f5;
+	--cp-surface: #ffffff;
+	--cp-raised: #f4f4f5;
+	--cp-hover: #ececee;
+	--cp-selected: #e4e4e7;
+	--cp-line: #e4e4e7;
+	--cp-control: #d4d4d8;
+	--cp-text: #18181b;
+	--cp-muted: #52525b;
+	--cp-faint: #71717a;
+	--cp-primary: #18181b;
+	--cp-on-primary: #fafafa;
+	--cp-live: #dc2626;
+	--cp-live-bg: #fef2f2;
+	--cp-live-ink: #991b1b;
+	--cp-armed: #d97706;
+	--cp-armed-bg: #fffbeb;
+	--cp-armed-ink: #92400e;
+	--cp-ok: #16a34a;
+	--cp-ok-bg: #dcfce7;
+	--cp-ok-ink: #14532d;
+	--cp-bad: #dc2626;
+	--cp-bad-bg: #fee2e2;
+	--cp-bad-ink: #7f1d1d;
+	--cp-h-main: 48px;
+	--cp-h-deck: 44px;
+	--cp-font: 'Inter Variable', 'Inter', system-ui, sans-serif;
+
+	/* shadcn tokens, neutral instead of slate/navy */
+	--background: #ffffff;
+	--foreground: #18181b;
+	--card: #ffffff;
+	--card-foreground: #18181b;
+	--popover: #ffffff;
+	--popover-foreground: #18181b;
+	--primary: #18181b;
+	--primary-foreground: #fafafa;
+	--secondary: #f4f4f5;
+	--secondary-foreground: #18181b;
+	--muted: #f4f4f5;
+	--muted-foreground: #52525b;
+	--accent: #f4f4f5;
+	--accent-foreground: #18181b;
+	--border: #e4e4e7;
+	--input: #d4d4d8;
+	--ring: #71717a;
+}
+
+:root.cp-next.dark {
+	--cp-ground: #0b0b0c;
+	--cp-surface: #161618;
+	--cp-raised: #1f1f22;
+	--cp-hover: #2a2a2e;
+	--cp-selected: #34343a;
+	--cp-line: #27272a;
+	--cp-control: #3f3f46;
+	--cp-text: #fafafa;
+	--cp-muted: #a1a1aa;
+	--cp-faint: #8b8b94;
+	--cp-primary: #fafafa;
+	--cp-on-primary: #18181b;
+	--cp-live: #f05252;
+	--cp-live-bg: #2b1515;
+	--cp-live-ink: #fca5a5;
+	--cp-armed: #f59e0b;
+	--cp-armed-bg: #2a1f0a;
+	--cp-armed-ink: #fcd34d;
+	--cp-ok: #22a05a;
+	--cp-ok-bg: #12261a;
+	--cp-ok-ink: #86efac;
+	--cp-bad: #dc3b3b;
+	--cp-bad-bg: #2a1414;
+	--cp-bad-ink: #fca5a5;
+
+	--background: #161618;
+	--foreground: #fafafa;
+	--card: #161618;
+	--card-foreground: #fafafa;
+	--popover: #1f1f22;
+	--popover-foreground: #fafafa;
+	--primary: #fafafa;
+	--primary-foreground: #18181b;
+	--secondary: #27272a;
+	--secondary-foreground: #fafafa;
+	--muted: #27272a;
+	--muted-foreground: #a1a1aa;
+	--accent: #27272a;
+	--accent-foreground: #fafafa;
+	--border: #27272a;
+	--input: #3f3f46;
+	--ring: #a1a1aa;
+	color-scheme: dark;
+}
+
+@media (max-height: 820px) {
+	:root.cp-next {
+		--cp-h-main: 40px;
+		--cp-h-deck: 38px;
+	}
+}
+
+:where(:root.cp-next) body {
+	background: var(--cp-ground);
+	color: var(--cp-text);
+}
+
+:where(:root.cp-next) .cp-btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 6px;
+	height: var(--cp-h, var(--cp-h-deck));
+	min-width: var(--cp-h, var(--cp-h-deck));
+	padding: 0 12px;
+	border: 1px solid var(--cp-control);
+	border-radius: 6px;
+	background: var(--cp-surface);
+	color: var(--cp-text);
+	font: 500 14px/1 var(--cp-font);
+	font-variant-numeric: tabular-nums;
+	white-space: nowrap;
+	cursor: pointer;
+	user-select: none;
+	transition:
+		background-color 120ms ease,
+		border-color 120ms ease,
+		color 120ms ease;
+}
+:where(:root.cp-next) .cp-btn:hover:not(:disabled) {
+	background: var(--cp-hover);
+}
+:where(:root.cp-next) .cp-btn:active:not(:disabled) {
+	transform: translateY(1px);
+}
+:where(:root.cp-next) .cp-btn:disabled {
+	opacity: 0.4;
+	cursor: not-allowed;
+}
+:where(:root.cp-next) .cp-btn:focus-visible {
+	outline: 2px solid var(--cp-text);
+	outline-offset: 1px;
+}
+:where(:root.cp-next) .cp-btn svg {
+	width: 18px;
+	height: 18px;
+	flex: none;
+}
+:where(:root.cp-next) .cp-btn.is-selected,
+:where(:root.cp-next) .cp-btn[aria-pressed='true'] {
+	border-color: var(--cp-selected);
+	background: var(--cp-selected);
+	font-weight: 600;
+}
+:where(:root.cp-next) .cp-btn.is-live {
+	border-color: var(--cp-live);
+	background: var(--cp-live-bg);
+	color: var(--cp-live-ink);
+	font-weight: 600;
+}
+:where(:root.cp-next) .cp-btn.is-armed,
+:where(:root.cp-next) .cp-btn.is-armed[aria-pressed='true'] {
+	border-color: var(--cp-armed);
+	background: var(--cp-armed-bg);
+	color: var(--cp-armed-ink);
+}
+:where(:root.cp-next) .cp-btn.is-primary {
+	border-color: var(--cp-primary);
+	background: var(--cp-primary);
+	color: var(--cp-on-primary);
+	font-weight: 600;
+}
+:where(:root.cp-next) .cp-btn.is-primary:hover:not(:disabled) {
+	background: var(--cp-primary);
+	opacity: 0.88;
+}
+:where(:root.cp-next) .cp-btn.is-ok[aria-pressed='true'] {
+	border-color: var(--cp-ok);
+	background: var(--cp-ok);
+	color: #fff;
+}
+:where(:root.cp-next) .cp-btn.is-bad[aria-pressed='true'] {
+	border-color: var(--cp-bad);
+	background: var(--cp-bad);
+	color: #fff;
+}
+:where(:root.cp-next) .cp-btn.is-ghost {
+	border-color: transparent;
+	background: transparent;
+}
+:where(:root.cp-next) .cp-btn.is-ghost:hover:not(:disabled) {
+	background: var(--cp-hover);
+}
+:where(:root.cp-next) .cp-btn.is-dim:not(.is-live):not([aria-pressed='true']) {
+	color: var(--cp-faint);
+	background: var(--cp-raised);
+}
+:where(:root.cp-next) .cp-panel {
+	min-width: 0;
+	min-height: 0;
+	border: 1px solid var(--cp-line);
+	border-radius: 8px;
+	background: var(--cp-surface);
+}
+:where(:root.cp-next) .cp-label {
+	color: var(--cp-muted);
+	font: 500 12px/16px var(--cp-font);
+}
+:where(:root.cp-next) .cp-num {
+	font-variant-numeric: tabular-nums;
+}

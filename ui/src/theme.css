@@ -1,0 +1,22 @@
+@theme {
+    --font-sans: 'Montserrat Variable', 'Montserrat', sans-serif;
+    --font-mono: 'JetBrains Mono Variable', 'JetBrains Mono', monospace;
+
+    /* Legacy display families (old tailwind.config.js names). */
+    --font-display: 'Segoe UI', 'Selawik', system-ui, sans-serif;
+    /* Question text: Arial-compatible metrics with full Vietnamese coverage. */
+    --font-question: 'Arimo Variable', 'Arimo', Arial, 'Liberation Sans', sans-serif;
+    --font-game-display: 'HANZEL', sans-serif;
+    --font-number-display: 'SVN-TV', sans-serif;
+    --font-header-text: 'SVN-HEAD', sans-serif;
+    --font-header: 'Inter Variable', 'Inter', sans-serif;
+    --font-futuristic: 'Tektur Variable', 'Tektur', sans-serif;
+    --font-legacy-mono: 'JetBrains Mono Variable', 'JetBrains Mono', Consolas, monospace;
+
+    --animate-wiggle: wiggle 1s ease-in-out infinite;
+}
+
+@keyframes wiggle {
+    0%, 100% { transform: rotate(-3deg); }
+    50% { transform: rotate(3deg); }
+}

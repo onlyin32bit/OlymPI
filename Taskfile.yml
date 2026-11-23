@@ -1,0 +1,75 @@
+version: '3'
+
+vars:
+  BINARY: dist/olympi
+
+tasks:
+  default:
+    cmds:
+      - task --list
+
+  ensure-dist:
+    internal: true
+    # ui/embed.go embeds ui/dist, which only exists after a UI build. The Go code must
+    # compile before that build (the UI needs the generated socket types), so create a
+    # placeholder on a fresh checkout. A real build later replaces it.
+    status:
+      - test -n "$(ls -A ui/dist 2>/dev/null)"
+    cmds:
+      - mkdir -p ui/dist
+      - touch ui/dist/.placeholder
+
+  dev:
+    desc: Run the Go server and the Vite dev UI together
+    deps: [run, ui]
+
+  run:
+    desc: Run the Go server without the embedded UI (Vite serves it)
+    deps: [ensure-dist]
+    cmds:
+      - go run ./cmd/4t --no-serve-ui --debug
+
+  ui:
+    desc: Start the Vite dev server
+    dir: ui
+    cmds:
+      - pnpm run dev
+
+  generate:
+    desc: Regenerate the TypeScript socket contract from the Go controllers
+    deps: [ensure-dist]
+    cmds:
+      - go run ./cmd/gen
+
+  build:
+    desc: Build the UI and the single binary with the UI embedded
+    deps: [generate]
+    cmds:
+      - cd ui && pnpm run build
+      - mkdir -p dist
+      - CGO_ENABLED=0 go build -o {{.BINARY}} ./cmd/4t
+
+  test:
+    desc: Run Go tests, UI type check, lint and UI tests
+    deps: [generate]
+    cmds:
+      - CGO_ENABLED=0 go test ./...
+      - cd ui && pnpm run check
+      - cd ui && pnpm run lint
+      - cd ui && pnpm run test
+
+  build-linux:
+    desc: Build the Linux amd64 binary
+    deps: [generate]
+    cmds:
+      - cd ui && pnpm run build
+      - mkdir -p dist
+      - CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o dist/olympi-linux-amd64 ./cmd/4t
+
+  build-windows:
+    desc: Build the Windows amd64 binary
+    deps: [generate]
+    cmds:
+      - cd ui && pnpm run build
+      - mkdir -p dist
+      - CGO_ENABLED=0 GOOS=windows GOARCH=amd64 go build -o dist/olympi-windows-amd64.exe ./cmd/4t

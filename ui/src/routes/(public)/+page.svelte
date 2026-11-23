@@ -8,6 +8,7 @@
 	import { d } from '$lib/dictionary';
 	import ChevronRight from '@lucide/svelte/icons/chevron-right';
 	import { socket } from '$lib/socket';
+	import { about } from '$lib/about';
 
 	const baseNav = [
 		{ label: 'Màn hình', href: '/display' },
@@ -83,9 +84,9 @@
 		</div>
 		<div>
 			{#if api.auth.user}
-				<div class="">
+				<div class="flex flex-col items-start gap-3">
 					<span>@{api.auth.user.username} - {d[api.auth.user.role]}</span>
-					<Button variant="destructive" onclick={() => api.auth.logout()} class="ml-4"
+					<Button variant="destructive" onclick={() => api.auth.logout()} class=""
 						>Đăng xuất</Button
 					>
 				</div>
@@ -105,3 +106,11 @@
 		{/each}
 	</nav>
 </section>
+
+<footer class="fixed inset-x-0 bottom-0 flex flex-wrap items-center justify-center gap-x-4 gap-y-1 p-3 text-sm text-muted-foreground">
+	<a href={about.authorURL} target="_blank" rel="noreferrer" class="hover:text-foreground">{about.author}</a>
+	<span aria-hidden="true">·</span>
+	<a href="#/about" class="hover:text-foreground">Về {about.appName}</a>
+	<span aria-hidden="true">·</span>
+	<a href={about.issuesURL} target="_blank" rel="noreferrer" class="hover:text-foreground">Góp ý trên GitHub</a>
+</footer>

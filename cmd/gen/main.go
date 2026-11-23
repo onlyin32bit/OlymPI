@@ -20,7 +20,7 @@ func main() {
 	}
 	var output bytes.Buffer
 	err := socket.WriteTypeScript(&output, opsocket.TypeScriptSchema{
-		Events:  map[string]any{"Match.Updated": game.RuntimeState{}, "Match.PublicUpdated": game.RuntimeState{}, "Match.ContestantUpdated": game.RuntimeState{}, "Sound.Played": sound.Playback{}, "Sound.Stopped": sound.StopEvent{}, "Sound.CatalogUpdated": struct{}{}, "Sound.SettingsUpdated": settings.SoundValues{}, "Settings.Updated": struct{}{}},
+		Events:  map[string]any{"Match.Updated": game.RuntimeState{}, "Match.PublicUpdated": game.RuntimeState{}, "Match.ContestantUpdated": game.RuntimeState{}, "Sound.Played": sound.Playback{}, "Sound.Stopped": sound.StopEvent{}, "Sound.CatalogUpdated": struct{}{}, "Sound.SettingsUpdated": settings.SoundValues{}, "Settings.Updated": struct{}{}, "Contestant.Presence": opsocket.ContestantPresence{}},
 		Aliases: map[string]any{"MatchCommand": game.Command{}, "MatchRuntimeState": game.RuntimeState{}, "MatchStatus": game.MatchStatus(""), "TimerState": game.TimerState{}, "RuntimeContestant": game.ContestantState{}, "SoundPlayback": sound.Playback{}, "SoundStatus": sound.Status{}, "Phase": controller.Phase(""), "Screen": controller.Screen("")},
 		Enums:   map[string][]string{"MatchStatus": {"draft", "ready", "playing", "paused", "completed", "archived"}, "Phase": {"idle", "logo", "main", "score", "khoi_dong", "vcnv", "tang_toc", "ve_dich"}, "Screen": {"intro", "main", "score", "start", "rule", "main_kd", "test_bell", "ques_chung", "ques_ts1", "ques_ts2", "ques_ts3", "ques_ts4", "end_ts", "end", "main_vcnv", "image_vcnv", "ques", "answers_vcnv", "answers_tt", "solve", "main_vd", "pre_ques_ts1", "pre_ques_ts2", "pre_ques_ts3", "pre_ques_ts4"}},
 	})

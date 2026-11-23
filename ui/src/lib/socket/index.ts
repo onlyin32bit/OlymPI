@@ -5,6 +5,7 @@ import { MatchSocket } from './match/index.svelte';
 import { TimerSocket } from './timer/index.svelte';
 import { SocketTransport } from './transport';
 import { SoundSocket } from './sound/index.svelte';
+import { PresenceSocket } from './presence/index.svelte';
 
 /** Query value the server treats as an anonymous audience connection. */
 export const PUBLIC_VIEW = 'public';
@@ -22,6 +23,7 @@ export class SocketApi {
 	readonly timer: TimerSocket;
 	readonly contestant: ContestantSocket;
 	readonly sound: SoundSocket;
+	readonly presence: PresenceSocket;
 	#baseUrl = '';
 	#publicViewHolds = 0;
 	#sessionCheck?: () => void;
@@ -33,6 +35,7 @@ export class SocketApi {
 		this.timer = new TimerSocket(transport, this.match);
 		this.contestant = new ContestantSocket(transport, this.match);
 		this.sound = new SoundSocket(transport);
+		this.presence = new PresenceSocket(transport);
 		// Audience displays are anonymous by design: never chase the session there.
 		transport.onSessionCheck = () => {
 			if (!this.publicView) this.#sessionCheck?.();

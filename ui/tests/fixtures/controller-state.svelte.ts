@@ -148,6 +148,7 @@ export const fixture = {
 	}
 };
 export const socket = {
+	presence: { isOnline: () => false },
 	get serverNow() {
 		return Date.now();
 	},

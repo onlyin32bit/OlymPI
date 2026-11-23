@@ -406,7 +406,8 @@ test('socket.usePublicView switches to ?view=public and restores on release', ()
 			'./match/index.svelte': { MatchSocket: Stub },
 			'./timer/index.svelte': { TimerSocket: Stub },
 			'./transport': { SocketTransport },
-			'./sound/index.svelte': { SoundSocket: Stub }
+			'./sound/index.svelte': { SoundSocket: Stub },
+			'./presence/index.svelte': { PresenceSocket: Stub }
 		}
 	);
 	const transport = new SocketTransport();

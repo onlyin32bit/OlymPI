@@ -1,6 +1,7 @@
 <script lang="ts">
 	import * as Popover from '$lib/components/ui/popover';
 	import { panel } from '$lib/operator/panel.svelte';
+	import { socket } from '$lib/socket';
 	import { veDichSlot } from '$lib/operator/questions';
 	import { SLOTS, batchPoints, questionInfo, verdictAllowed, type Slot } from '$lib/operator/scoring';
 	import BellOff from '@lucide/svelte/icons/bell-off';
@@ -81,6 +82,12 @@
 			>
 				<header>
 					<span class="slot">TS{slot}</span>
+					<span
+						class="presence"
+						class:on={socket.presence.isOnline(slot)}
+						title={socket.presence.isOnline(slot) ? 'Trực tuyến' : 'Ngoại tuyến'}
+						aria-label={socket.presence.isOnline(slot) ? `Thí sinh ${slot} trực tuyến` : `Thí sinh ${slot} ngoại tuyến`}
+					></span>
 					{#if owner === slot}<span class="tag live">Đang thi</span>{/if}
 					{#if ring >= 0}<span class="tag armed"><BellRing />{ring + 1}</span>{/if}
 					{#if info?.kind === 've_dich' && slot !== info.owner && entry?.has_rung}<span class="tag armed">Cướp</span>{/if}
@@ -232,6 +239,22 @@
 		gap: 6px;
 		min-height: 24px;
 	}
+	.presence {
+		width: 0.55rem;
+		height: 0.55rem;
+		border-radius: 999px;
+		background: transparent;
+		box-shadow: inset 0 0 0 1.5px currentColor;
+		opacity: 0.5;
+		flex: none;
+	}
+
+	.presence.on {
+		background: #22c55e;
+		box-shadow: none;
+		opacity: 1;
+	}
+
 	.slot {
 		color: var(--cp-muted);
 		font-size: 12px;

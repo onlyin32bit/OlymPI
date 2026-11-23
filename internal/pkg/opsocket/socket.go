@@ -112,6 +112,7 @@ func (s *baseSocket) registerClient(c *websocket.Conn, principal Principal, view
 	s.clients[c] = client
 	s.clientsMutex.Unlock()
 	s.debugf("connected client=%s remote=%s subject=%s roles=%v view=%s", client.ID, c.RemoteAddr(), principal.Subject, principal.Roles, view)
+	s.broadcastPresence()
 	return client
 }
 
@@ -140,6 +141,7 @@ func (s *baseSocket) closeClient(client *Client) {
 		delete(s.clients, client.conn)
 	}
 	s.clientsMutex.Unlock()
+	s.broadcastPresence()
 }
 
 type Socket struct{ *baseSocket }

@@ -162,6 +162,7 @@ export type TimerResumeResponse = MatchRuntimeState;
 export type TimerStartRequest = { command: MatchCommand; steal?: boolean; obstacle?: boolean; duration_ms?: number };
 export type TimerStartResponse = MatchRuntimeState;
 
+export type ContestantPresenceEvent = { slots: number[] };
 export type MatchContestantUpdatedEvent = MatchRuntimeState;
 export type MatchPublicUpdatedEvent = MatchRuntimeState;
 export type MatchUpdatedEvent = MatchRuntimeState;
@@ -223,6 +224,7 @@ export interface OpsocketOperations {
 }
 
 export interface OpsocketEvents {
+	'Contestant.Presence': ContestantPresenceEvent;
 	'Match.ContestantUpdated': MatchContestantUpdatedEvent;
 	'Match.PublicUpdated': MatchPublicUpdatedEvent;
 	'Match.Updated': MatchUpdatedEvent;

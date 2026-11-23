@@ -34,7 +34,7 @@ Các lệnh thường dùng:
 Bản công khai dùng logo, nền và âm thanh tạm thời. Để đổi sang thương hiệu của bạn:
 
 1. Sửa `ui/src/lib/brand.ts` (tên hiển thị trên màn hình) và `internal/settings/brand.go` (tên sự kiện mặc định).
-2. Thay các tệp logo và nền trong `ui/static/` (`4t.png`, `4t-blue.png`, `logo-school.png`, `bg-*`, `rule.png`, `star.gif`) và trong `ui/src/lib/assets/image/`. Giữ nguyên tên tệp để không phải sửa mã.
+2. Thay các tệp logo và nền trong `ui/static/` (riêng `bg-ques.svg`, `bg-tt.svg` và `bg-vcnv.svg` là tác phẩm của tác giả, được phép dùng công khai) (`4t.png`, `4t-blue.png`, `logo-school.png`, `bg-*`, `rule.png`, `star.gif`) và trong `ui/src/lib/assets/image/`. Giữ nguyên tên tệp để không phải sửa mã.
 3. Thay âm thanh trong `ui/static/sounds/`, giữ nguyên tên và định dạng tệp. Các âm thanh đi kèm là tệp câm một giây, dùng làm chỗ giữ.
 4. Thay phông chữ hiển thị `ui/static/fonts/display-*.ttf`. Hiện tại là Noto Sans, theo giấy phép SIL Open Font License.
 5. Chạy lại `task build`.

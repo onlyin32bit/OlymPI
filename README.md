@@ -36,11 +36,11 @@ Bản công khai dùng logo, nền và âm thanh tạm thời. Để đổi sang
 1. Sửa `ui/src/lib/brand.ts` (tên hiển thị trên màn hình) và `internal/settings/brand.go` (tên sự kiện mặc định).
 2. Thay các tệp logo và nền trong `ui/static/` (`4t.png`, `4t-blue.png`, `logo-school.png`, `bg-*`, `rule.png`, `star.gif`) và trong `ui/src/lib/assets/image/`. Giữ nguyên tên tệp để không phải sửa mã.
 3. Thay âm thanh trong `ui/static/sounds/`, giữ nguyên tên và định dạng tệp. Các âm thanh đi kèm là tệp câm một giây, dùng làm chỗ giữ.
-4. Thay phông chữ hiển thị `ui/static/fonts/display-*.ttf`. Hiện tại là Montserrat, theo giấy phép SIL Open Font License.
+4. Thay phông chữ hiển thị `ui/static/fonts/display-*.ttf`. Hiện tại là Noto Sans, theo giấy phép SIL Open Font License.
 5. Chạy lại `task build`.
 
 ## Giấy phép
 
 Mã nguồn theo [PolyForm Noncommercial 1.0.0](LICENSE). Bạn được sử dụng, sao chép và chỉnh sửa cho mục đích phi thương mại, ví dụ trong câu lạc bộ, trường học hoặc sự kiện cá nhân. Sử dụng thương mại cần thỏa thuận riêng với tác giả.
 
-Các thành phần bên thứ ba giữ giấy phép riêng (xem trong từng gói). Phông Selawik và Montserrat theo SIL Open Font License.
+Các thành phần bên thứ ba giữ giấy phép riêng (xem trong từng gói). Phông Selawik và Noto Sans theo SIL Open Font License.
